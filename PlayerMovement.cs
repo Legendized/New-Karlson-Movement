@@ -1,5 +1,3 @@
-// Some stupid rigidbody based movement by Dani
-
 using System;
 using UnityEngine;
 
@@ -163,8 +161,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        UpdateCollisionChecks();
-
         if (!grounded)
         {
             rb.AddForce(Vector3.down * 2f);
@@ -448,33 +444,6 @@ public class PlayerMovement : MonoBehaviour
     private void StopSurf()
     {
         surfing = false;
-    }
-
-    private void UpdateCollisionChecks()
-    {
-        if (!cancellingGrounded)
-        {
-            cancellingGrounded = true;
-        }
-        else
-        {
-            groundCancel++;
-            if ((float)groundCancel > 5)
-            {
-                StopGrounded();
-            }
-        }
-        if (!cancellingSurf)
-        {
-            cancellingSurf = true;
-            surfCancel = 1;
-            return;
-        }
-        surfCancel++;
-        if ((float)surfCancel > 5f)
-        {
-            StopSurf();
-        }
     }
 
     private void OnCollisionEnter(Collision other)
